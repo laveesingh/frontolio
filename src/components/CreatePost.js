@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 class CreatePost extends React.Component {
   state = {
@@ -10,6 +11,10 @@ class CreatePost extends React.Component {
       description: this.state.description,
       content: this.state.content
     }
+    axios.post('http://localhost:8000/blog/post/create/', {
+      ...formData
+    })
+      .then(response => console.log('response from server:', response))
   }
   handleChange = e => {
     this.setState({
