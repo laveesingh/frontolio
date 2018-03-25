@@ -1,18 +1,23 @@
 import React from 'react'
 import axios from 'axios'
+import cookies from 'js-cookie'
 
 class CreatePost extends React.Component {
   state = {
   }
   handleSubmit = e => {
     e.preventDefault()
+    const csrfmiddlewaretoken = cookies.get('csrftoken')
     const formData = {
       title: this.state.title,
       description: this.state.description,
-      content: this.state.content
+      content: this.state.content,
     }
-    axios.post('http://localhost:8000/blog/post/create/', {
-      ...formData
+    axios({
+      url: 'http://localhost:8000/blog/post/create/',
+      method: 'post',
+      headers: {'X-CSRFToken': csrfmiddlewaretoken},
+      data: formData
     })
       .then(response => console.log('response from server:', response))
   }
