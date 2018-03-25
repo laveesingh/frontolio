@@ -1,52 +1,33 @@
 import React from 'react'
+import axios from 'axios'
 
 class PostList extends React.Component {
+
   state = {
+    postsList: []
   }
-  handleSubmit = e => {
-    e.preventDefault()
-    const formData = {
-      title: this.state.title,
-      description: this.state.description,
-      content: this.state.content
-    }
-    console.log('submitting:', formData)
-  }
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
+
+  componentWillMount() {
+    axios({
+      url: 'http://localhost:8000/blog/post/list/',
+      method: 'get',
     })
+      .then(response => this.setState({ postsList: response.data.posts }))
   }
+
   render() {
+    if (this.state.postsList.length === 0) {
+      return <h2>Whoops looks like this list is empty.</h2>
+    }
     return (
-      <div className={this.props.className}>
-        <form className='create-post' onSubmit={this.handleSubmit}>
-          <h1>Create a new post</h1> <br />
-          <div className='input-group'>
-            <label>title</label>
-            <input type='text' id='title'
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
+      <div >
+        {this.state.postsList.map( post => (
+          <div>
+            <h1> {post.fields.title} </h1>
+            <h2> {post.fields.description} </h2>
+            <h3> {post.fields.content} </h3>
           </div>
-          <div className='input-group'>
-            <label>description</label>
-            <input type='text' id='description'
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className='input-group'>
-            <label>content ( supports markdown )</label>
-            <textarea id='content'
-              value={this.state.content}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button type='submit' onClick={this.handleSubmit}>
-            Create
-          </button>
-        </form>
+        ))}
       </div>
     )
   }

@@ -9,6 +9,7 @@ class Blog extends React.Component {
     return (
       <div>
         <Link to='/blog/create'>Create New Post</Link>
+        <Link to='/blog/list'>Posts List</Link>
         <Route exact path='/blog/create' render={props => <CreatePost {...props} />} />
         <Route path='/blog/list' render={props => <PostList {...props} />} />
       </div>
