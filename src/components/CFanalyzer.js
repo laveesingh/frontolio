@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default class CFanalyzer extends React.Component {
 
@@ -8,7 +9,14 @@ export default class CFanalyzer extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log('submitting:', this.state.username)
+    axios({
+      url: 'http://localhost:8000/blog/tools/cfreport/',
+      method: 'get',
+      params: {
+        username: this.state.username
+      }
+    })
+      .then(response => console.log(response.data.report))
   }
 
   render() {
