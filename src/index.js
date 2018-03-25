@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Blog from './components/Blog'
 import Navbar from './components/Navbar'
 import Portfolio from './components/Portfolio'
+import Tools from './components/Tools'
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
           <Route exact path='/' render={ props => <Home {...props} />} />
           <Route path='/blog' render={ props => <Blog {...props} />} />
           <Route path='/portfolio' render={ props => <Portfolio {...props} />} />
+          <Route path='/tools' render={ props => <Tools {...props} />} />
         </div>
       </BrowserRouter>
     )
