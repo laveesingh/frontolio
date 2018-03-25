@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
+import CFanalyzer from './CFanalyzer'
 
 const Tools = props => {
   const toolsList = [
@@ -11,6 +12,7 @@ const Tools = props => {
       {toolsList.map( tool => (
         <h1 key={tool.name}><Link to={tool.link}>{tool.name}</Link></h1>
       ))}
+      <Route path='/tools/cfanalyzer' render={props => <CFanalyzer {...props} />} />
     </div>
   )
 }
