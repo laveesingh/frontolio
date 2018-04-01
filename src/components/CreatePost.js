@@ -5,6 +5,11 @@ import {TextField, TextArea, Button, Heading1} from './styled'
 
 class CreatePost extends React.Component {
   state = {
+    opacity: 0
+  }
+  componentDidMount() {
+    setTimeout(() => this.setState({ opacity: 1 })
+    )
   }
   handleSubmit = e => {
     e.preventDefault()
@@ -29,7 +34,10 @@ class CreatePost extends React.Component {
   }
   render() {
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} style={{
+        opacity: this.state.opacity,
+        transition: 'opacity 500ms ease-in-out'
+      }}>
         <form className='create-post' onSubmit={this.handleSubmit}>
           <Heading1>Create a new post</Heading1> <br />
           <TextField label='title'

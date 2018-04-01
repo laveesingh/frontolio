@@ -4,7 +4,8 @@ import axios from 'axios'
 class PostList extends React.Component {
 
   state = {
-    postsList: []
+    postsList: [],
+    opacity: 0,
   }
 
   componentWillMount() {
@@ -15,12 +16,19 @@ class PostList extends React.Component {
       .then(response => this.setState({ postsList: response.data.posts }))
   }
 
+  componentWillUpdate() {
+    setTimeout(() => this.setState({ opacity: 1 }))
+  }
+
   render() {
     if (this.state.postsList.length === 0) {
       return <h2>Whoops looks like this list is empty.</h2>
     }
     return (
-      <div >
+      <div style={{
+        opacity: this.state.opacity,
+        transition: 'opacity 500ms linear'
+      }}>
         {this.state.postsList.map( post => (
           <div>
             <h1> {post.fields.title} </h1>
