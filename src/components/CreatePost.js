@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
+import {TextField, TextArea} from './Input'
 
 class CreatePost extends React.Component {
   state = {
@@ -31,27 +32,15 @@ class CreatePost extends React.Component {
       <div className={this.props.className}>
         <form className='create-post' onSubmit={this.handleSubmit}>
           <h1>Create a new post</h1> <br />
-          <div className='input-group'>
-            <label>title</label>
-            <input type='text' id='title'
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className='input-group'>
-            <label>description</label>
-            <input type='text' id='description'
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className='input-group'>
-            <label>content ( supports markdown )</label>
-            <textarea id='content'
-              value={this.state.content}
-              onChange={this.handleChange}
-            />
-          </div>
+          <TextField label='title'
+            value={this.state.title}
+            onChange={this.handleChange} />
+          <TextField label='description'
+            value={this.state.description}
+            onChange={this.handleChange} />
+          <TextArea label={'content (supports markdown)'}
+            value={this.state.content}
+            onChange={this.handleChange} />
           <button type='submit' onClick={this.handleSubmit}>
             Create
           </button>

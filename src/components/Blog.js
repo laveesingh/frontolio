@@ -3,11 +3,12 @@ import { Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
+import NavLink from './NavLink'
 
 const Blog = props => (
   <div className={props.className}>
-    <Link to='/blog/create'>Create New Post</Link>
-    <Link to='/blog/list'>Posts List</Link>
+    <NavLink to='/blog/create' fontSize='16px'>Create New Post</NavLink>
+    <NavLink to='/blog/list'>Posts List</NavLink>
     <Route exact path='/blog/create' render={props => <CreatePost {...props} />} />
     <Route path='/blog/list' render={props => <PostList {...props} />} />
   </div>
