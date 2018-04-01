@@ -4,7 +4,6 @@ import styled, {css} from 'styled-components'
 const inputMixin = css`
   & {
     display: flex;
-    border: 1px solid red;
     align-items: center;
     justify-content: center;
     label {

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
 import {TextField, TextArea} from './Input'
+import Button from './Button'
 
 class CreatePost extends React.Component {
   state = {
@@ -41,9 +42,9 @@ class CreatePost extends React.Component {
           <TextArea label={'content (supports markdown)'}
             value={this.state.content}
             onChange={this.handleChange} />
-          <button type='submit' onClick={this.handleSubmit}>
+          <Button type='submit' onClick={this.handleSubmit}>
             Create
-          </button>
+          </Button>
         </form>
       </div>
     )
