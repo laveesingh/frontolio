@@ -7,7 +7,7 @@ import {NavLink} from './styled'
 
 const Blog = props => (
   <div className={props.className}>
-    <NavLink to='/blog/create' fontSize='16px'>Create New Post</NavLink>
+    <NavLink to='/blog/create'>Create New Post</NavLink>
     <NavLink to='/blog/list'>Posts List</NavLink>
     <Route exact path='/blog/create' render={props => <CreatePost {...props} />} />
     <Route path='/blog/list' render={props => <PostList {...props} />} />

@@ -12,7 +12,8 @@ let Button1 = styled(Button)`
     font-size: 18px;
     cursor: pointer;
     padding: 0px 25px;
-    margin: 20px
+    margin: 20px;
+    text-shadow: 2px 2px 5px #cccccc;
     &:hover {
       opacity: 0.8;
     }

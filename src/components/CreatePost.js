@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
-import {TextField, TextArea, Button} from './styled'
+import {TextField, TextArea, Button, Heading1} from './styled'
 
 class CreatePost extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class CreatePost extends React.Component {
     return (
       <div className={this.props.className}>
         <form className='create-post' onSubmit={this.handleSubmit}>
-          <h1>Create a new post</h1> <br />
+          <Heading1>Create a new post</Heading1> <br />
           <TextField label='title'
             value={this.state.title}
             onChange={this.handleChange} />

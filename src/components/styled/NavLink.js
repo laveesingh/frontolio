@@ -10,9 +10,11 @@ let NavLink1 = styled(NavLink)`
     padding: 10px;
     font-size: ${props => props.fontSize ? props.fontSize : '24px'};
     text-decoration: none;
+    text-shadow: 2px 2px 5px #37a000;
     &:hover {
       background-color: #37a000;
       color: white;
+    text-shadow: 2px 2px 5px #cccccc;
     }
   }
 `
