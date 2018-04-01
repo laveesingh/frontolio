@@ -1,13 +1,7 @@
-import React from 'react'
 import styled from 'styled-components'
+import {Button} from '../custom'
 
-const Button = ({children, ...props}) => (
-  <button {...props}>
-    {children}
-  </button>
-)
-
-export default styled(Button)`
+let Button1 = styled(Button)`
   & {
     height: 40px;
     border: none;
@@ -24,3 +18,6 @@ export default styled(Button)`
     }
   }
 `
+
+export {Button1 as Button}
+

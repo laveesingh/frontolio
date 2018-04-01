@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
-import NavLink from './NavLink'
+import {NavLink} from './styled'
 
 const Blog = props => (
   <div className={props.className}>

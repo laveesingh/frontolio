@@ -1,5 +1,5 @@
-import React from 'react'
 import styled, {css} from 'styled-components'
+import {TextField, TextArea} from '../custom'
 
 const inputMixin = css`
   & {
@@ -25,29 +25,16 @@ const inputMixin = css`
   }
 `
 
-
-const RawTextField = props => (
-  <div className={props.className}>
-    <label>{props.label}</label>
-    <input type='text' onChange={props.onChange} value={props.value} />
-  </div>
-)
-
-export const TextField = styled(RawTextField)`
+let TextField1 = styled(TextField)`
   ${props => inputMixin}
 `
 
-const RawTextArea = props => (
-  <div className={props.className}>
-    <label>{props.label}</label>
-    <textarea type='text' onChange={props.onChange} value={props.value} row={5}/>
-  </div>
-)
-
-export const TextArea = styled(RawTextArea)`
+let TextArea1 = styled(TextArea)`
   ${props => inputMixin}
   textarea {
     height: 100px;
   }
 `
 
+export { TextField1 as TextField }
+export { TextArea1 as TextArea }

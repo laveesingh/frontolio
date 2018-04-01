@@ -1,14 +1,7 @@
-import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import {NavLink} from '../custom'
 
-const NavLink = props => (
-  <Link to={props.to} className={props.className}>
-    {props.text || props.children}
-  </Link>
-)
-
-export default styled(NavLink)`
+let NavLink1 = styled(NavLink)`
   & {
     font-weight: 650;
     color: #37a000;
@@ -23,3 +16,5 @@ export default styled(NavLink)`
     }
   }
 `
+
+export {NavLink1 as NavLink}

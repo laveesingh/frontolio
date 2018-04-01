@@ -1,8 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
-import {TextField, TextArea} from './Input'
-import Button from './Button'
+import {TextField, TextArea, Button} from './styled'
 
 class CreatePost extends React.Component {
   state = {
