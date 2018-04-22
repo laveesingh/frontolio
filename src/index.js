@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Navbar />
+          <Route path='/' render={ props => <Navbar {...props} /> } />
           <Route exact path='/' render={ props => <Blog {...props} />} />
           <Route path='/blog' render={ props => <Blog {...props} />} />
           <Route path='/portfolio' render={ props => <Portfolio {...props} />} />

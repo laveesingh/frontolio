@@ -3,12 +3,24 @@ import styled from 'styled-components'
 import {NavLink} from './styled'
 
 class Navbar extends React.Component {
+
+  componentWillMount() {
+    const pathname = this.props.location.pathname
+    if (pathname.match('blog')) {
+      this.setState({ selectedNav: 'blog' })
+    } else if (pathname.match('portfolio')) {
+      this.setState({ selectedNav: 'portfolio' })
+    } else {
+      this.setState({ selectedNav: 'tools' })
+    }
+  }
+
   render() {
     return (
       <div className={this.props.className}>
-        <NavLink to='/blog' text='blog' />
-        <NavLink to='/portfolio' text='portfolio' />
-        <NavLink to='/tools' text='tools' />
+        <NavLink className={this.state.selectedNav === 'blog' ? 'selected' : ''} to='/blog/list'> blog </NavLink>
+        <NavLink className={this.state.selectedNav === 'portfolio' ? 'selected' : ''} to='/portfolio'> portfolio </NavLink>
+        <NavLink className={this.state.selectedNav === 'tools' ? 'selected': ''} to='/tools'> tools </NavLink>
       </div>
     )
   }
