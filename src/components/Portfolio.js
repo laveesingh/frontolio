@@ -1,14 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export default class Portfolio extends React.Component {
 
   skillsList = [
-    {name: 'Python', proficiency: 'advanced'},
-    {name: 'ReactJS', proficiency: 'advanced'},
-    {name: 'Javascript/NodeJS', proficiency: 'advanced'},
-    {name: 'C++', proficiency: 'intermediate'},
-    {name: 'MongoDB', proficiency: 'intermediate'},
-    {name: 'PostgreSQL', proficiency: 'intermediate'}
+    {name: 'Python', proficiency: 85},
+    {name: 'ReactJS', proficiency: 85},
+    {name: 'Javascript/NodeJS', proficiency: 85},
+    {name: 'C++', proficiency: 60},
+    {name: 'MongoDB', proficiency: 60},
+    {name: 'PostgreSQL', proficiency: 60}
   ]
 
   projectsList = [
@@ -26,7 +27,7 @@ export default class Portfolio extends React.Component {
         <h3>Full Stack Web Developer and Computer Programmer</h3>
         <h2>Skills</h2>
         { this.skillsList.map(skill => (
-          <h4 key={skill.name}>{skill.name}: {skill.proficiency}</h4>
+          <Skill name={skill.name} level={skill.proficiency} />
         ))}
         <h2>Projects</h2>
         { this.projectsList.map(project => (
@@ -41,3 +42,20 @@ export default class Portfolio extends React.Component {
     )
   }
 }
+
+let Skill = props => (
+  <span className={props.className}>
+    {props.name}
+  </span>
+)
+Skill = styled(Skill)`
+  & {
+    background-color: ${props => props.level >= 80 ? 'green' : 'red'};
+    padding: 10px 25px;
+    margin: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px grey;
+    cursor: pointer;
+    font-weight: 600;
+  }
+`
