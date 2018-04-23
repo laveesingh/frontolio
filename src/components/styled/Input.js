@@ -4,8 +4,9 @@ import {TextField, TextArea} from '../custom'
 const inputMixin = css`
   & {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 80%;
+    align-items: stretch;
+    justify-content: stretch;
     label {
       text-transform: uppercase;
       margin: 0px 10px;

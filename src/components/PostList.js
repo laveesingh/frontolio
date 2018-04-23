@@ -55,7 +55,7 @@ let PostCard = props => (
 PostCard = styled(PostCard)`
   & {
     margin: 50px auto;
-    width: 50%;
+    width: 70%;
     border-radius: 5px;
     box-shadow: 0px 0px 5px grey;
     display: block;

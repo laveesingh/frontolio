@@ -1,38 +1,77 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import {NavLink} from './styled'
+import {Grid, Col, Row} from 'react-bootstrap'
 
 class Navbar extends React.Component {
 
-  componentWillMount() {
-    const pathname = this.props.location.pathname
-    if (pathname.match('blog')) {
-      this.setState({ selectedNav: 'blog' })
-    } else if (pathname.match('portfolio')) {
-      this.setState({ selectedNav: 'portfolio' })
-    } else {
-      this.setState({ selectedNav: 'tools' })
-    }
-  }
-
   render() {
     return (
-      <div className={this.props.className}>
-        <NavLink className={this.state.selectedNav === 'blog' ? 'selected' : ''} to='/blog/list'> blog </NavLink>
-        <NavLink className={this.state.selectedNav === 'portfolio' ? 'selected' : ''} to='/portfolio'> portfolio </NavLink>
-        <NavLink className={this.state.selectedNav === 'tools' ? 'selected': ''} to='/tools'> tools </NavLink>
-      </div>
+      <Grid fluid className={this.props.className}>
+        <Row>
+          <Col md={5}>
+            <NavLink 
+              to='/'>
+              laveesingh.com
+            </NavLink>
+          </Col>
+          <Col mdOffset={2} md={1}>
+            <NavLink 
+              to='/blog/list'>
+              Blog
+            </NavLink>
+          </Col>
+          <Col md={1}>
+            <NavLink 
+              to='/portfolio'>
+              About
+            </NavLink>
+          </Col>
+          <Col md={1}>
+            <NavLink 
+              to='/tools'>
+              Tools
+            </NavLink>
+          </Col>
+          <Col md={1}>
+            <NavLink 
+              to='/contact'>
+              Contact
+            </NavLink>
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }
 
+const NavLink = styled(Link)`
+  & {
+    font-size: 20px;
+    color: #eeeeee;
+    font-weight: 600;
+    &:focus {
+      color: #eeeeee;
+      text-decoration: none;
+    }
+    &:hover {
+      color: #eeeeee;
+      text-decoration: underline;
+    }
+  }
+  
+`
+
 export default styled(Navbar)`
   & {
     background-color: white;
-    height: 70px;
+    background-image: linear-gradient(312deg, #14134e 0%, #512d5a 68%, #843b61 100%);
+    height: 60px;
     box-shadow: 1px 1px 5px grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .row {
+      height: 50px;
+      margin: 5px;
+      padding: 10px;
+    }
   }
 `

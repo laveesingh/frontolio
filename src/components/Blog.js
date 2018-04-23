@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
@@ -20,7 +20,9 @@ class Blog extends React.Component{
       }}>
         <NavLink to='/blog/create'>Create New Post</NavLink>
         <NavLink to='/blog/list'>Posts List</NavLink>
-        <Route exact path='/blog/create' render={props => <CreatePost {...props} />} />
+        <Route exact path='/' render={props => <PostList {...props} />} />
+        <Route exact path='/blog' render={props => <PostList {...props} />} />
+        <Route path='/blog/create' render={props => <CreatePost {...props} />} />
         <Route path='/blog/list' render={props => <PostList {...props} />} />
       </div>
     )
