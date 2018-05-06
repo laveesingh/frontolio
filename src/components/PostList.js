@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import { Grid, Row, Col } from 'react-bootstrap'
 
 class PostList extends React.Component {
 
@@ -26,14 +27,16 @@ class PostList extends React.Component {
       return <h2>Whoops looks like this list is empty.</h2>
     }
     return (
-      <div style={{
+      <Grid fluid style={{
         opacity: this.state.opacity,
         transition: 'opacity 500ms linear'
       }}>
         {this.state.postsList.map( post => (
-          <PostCard {...post.fields} />
+          <Col md={4}>
+            <PostCard {...post.fields} />
+          </Col>
         ))}
-      </div>
+      </Grid>
     )
   }
 }
@@ -55,10 +58,14 @@ let PostCard = props => (
 PostCard = styled(PostCard)`
   & {
     margin: 50px auto;
-    width: 70%;
+    width: 90%;
     border-radius: 5px;
     box-shadow: 0px 0px 5px grey;
     display: block;
+    transition: transform 1s linear;
+    &:hover {
+      transform: rotateY(180deg);
+    }
   }
   .title {
     padding: 10px;

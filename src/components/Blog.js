@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
-import {Grid, Row, Col, Nav, NavItem } from 'react-bootstrap'
+import {Grid, Row, Col, Nav, NavItem, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
@@ -14,6 +14,11 @@ class Blog extends React.Component{
 
   componentDidMount() {
     setTimeout(() => this.setState({ opacity: 1}))
+    if (this.props.location.pathname.match('/blog/create')) {
+      this.setState({ activeTabKey: 1})
+    } else {
+      this.setState({ activeTabKey: 2})
+    }
   }
 
   handleSelect = key => this.setState({ activeTabKey: key })
@@ -22,11 +27,11 @@ class Blog extends React.Component{
     return (
       <Grid className={this.props.className} style={{
         opacity: this.state.opacity,
-        transition: 'opacity 500ms ease-in-out'
+        transition: 'opacity 600ms ease-in-out'
       }}>
         <Row>
           <Col md={2}>
-            <Nav bsStyle="tabs" stacked activeKey={this.state.activeTabKey} onSelect={this.handleSelect}>
+            <Nav stacked activeKey={this.state.activeTabKey} onSelect={this.handleSelect}>
               <NavItem eventKey={1} href='/blog/create' to='/blog/create' componentClass={Link}>
                 Create New
               </NavItem>
@@ -58,6 +63,9 @@ export default styled(Blog)`
     text-align: center;
     background: white;
     box-shadow: 0px 0px 5px grey;
+  }
+  .nav .active {
+    filter: invert(100%);
   }
   .nav a{
     font-weight: 650;
