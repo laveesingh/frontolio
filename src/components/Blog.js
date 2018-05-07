@@ -4,6 +4,7 @@ import {Grid, Row, Col, Nav, NavItem, Button } from 'react-bootstrap'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
+//import PostView from './PostView'
 
 class Blog extends React.Component{
 
@@ -48,6 +49,7 @@ class Blog extends React.Component{
             <Route exact path='/blog' render={props => <PostList {...props} />} />
             <Route path='/blog/create' render={props => <CreatePost {...props} />} />
             <Route path='/blog/list' render={props => <PostList {...props} />} />
+            {/*<Route path='/blog/post/:id' render={props => <PostView {...props} />} />*/}
           </Col>
         </Row>
       </Grid>

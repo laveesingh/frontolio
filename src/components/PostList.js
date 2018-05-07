@@ -42,7 +42,7 @@ class PostList extends React.Component {
 }
 
 let PostCard = props => (
-  <div className={props.className}>
+  <div className={props.className} onClick={props.onClick}>
     <div className="title">{props.title}</div>
     <div className="description">{props.description}</div>
   </div>
@@ -53,17 +53,24 @@ PostCard = styled(PostCard)`
     margin: 50px auto;
     width: 90%;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px grey;
+    box-shadow: 5px 5px 10px grey;
     display: block;
     transition: transform 1s linear;
+    cursor: pointer;
+    opacity: 0.9;
+    &:hover {
+      opacity: 1.0;
+      box-shadow: 10px 10px 20px grey;
+    }
   }
   .title {
+    background-image: linear-gradient(312deg, #14134e 0%, #512d5a 68%, #843b61 100%);
     padding: 10px;
     box-shadow: 0px 0px 2px grey;
     font-size: 24px;
-    font-weight: 700;
-    color: #37a000;
-    background-color: #eeeeee;
+    font-weight: 600;
+    color: white;
+    filter: hue-rotate(45deg);
   }
   .description {
     font-size: 20px;
