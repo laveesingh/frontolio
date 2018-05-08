@@ -11,9 +11,10 @@ class PostList extends React.Component {
     opacity: 0,
   }
 
-  goToPostView = (e, postId) => {
+  goToPostView = (e, post) => {
     e.preventDefault()
-    this.props.history.push(`/blog/post/${postId}`)
+    this.props.setBlogPost(post)
+    this.props.history.push(`/blog/post/${post.pk}`)
   }
 
   componentWillMount() {
@@ -42,7 +43,7 @@ class PostList extends React.Component {
           <Col key={post.pk} md={4}>
             <PostCard
               {...post.fields}
-              onClick={e => this.goToPostView(e, post.pk)}
+              onClick={e => this.goToPostView(e, post)}
             />
           </Col>
         ))}

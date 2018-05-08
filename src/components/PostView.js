@@ -3,8 +3,12 @@ import {connect} from 'react-redux'
 
 class PostView extends React.Component {
   render() {
-    return <h1>PostView</h1>
+    if (!this.props.blogPost) return <h1>Oops!</h1>
+    return <h1>PostView {this.props.blogPost.pk}</h1>
   }
 }
 
-export default connect()(PostView)
+const mapStateToProps = state => ({
+  blogPost: state.blog.blogPost,
+})
+export default connect(mapStateToProps)(PostView)
