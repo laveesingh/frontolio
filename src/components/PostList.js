@@ -11,6 +11,11 @@ class PostList extends React.Component {
     opacity: 0,
   }
 
+  goToPostView = (e, postId) => {
+    e.preventDefault()
+    this.props.history.push(`/blog/post/${postId}`)
+  }
+
   componentWillMount() {
     axios({
       url: 'http://localhost:8000/blog/post/list/',
@@ -19,9 +24,6 @@ class PostList extends React.Component {
       this.setState({postsList: response.data.posts})
       this.props.setBlogPostList(response.data.posts)
     })
-  }
-
-  componentWillUpdate() {
     setTimeout(() => this.setState({opacity: 1}))
   }
 
@@ -37,8 +39,11 @@ class PostList extends React.Component {
           transition: 'opacity 500ms linear',
         }}>
         {this.state.postsList.map(post => (
-          <Col md={4}>
-            <PostCard {...post.fields} />
+          <Col key={post.pk} md={4}>
+            <PostCard
+              {...post.fields}
+              onClick={e => this.goToPostView(e, post.pk)}
+            />
           </Col>
         ))}
       </Grid>
