@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Grid, Col} from 'react-bootstrap'
 import * as actions from '../actions/index'
 
 class PostList extends React.Component {
