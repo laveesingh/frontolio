@@ -3,18 +3,27 @@ import axios from 'axios'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {Grid, Col, Button, Glyphicon} from 'react-bootstrap'
+import Fade from './Fade'
+import Slide from './Slide'
 import * as actions from '../actions/index'
 
 class PostList extends React.Component {
   state = {
     postsList: [],
-    opacity: 0,
   }
 
   goToPostView = (e, post) => {
     e.preventDefault()
     this.props.setBlogPost(post)
     this.props.history.push(`/blog/post/${post.pk}`)
+  }
+
+  editPost = (e, post) => {
+    alert('editting')
+  }
+
+  deletePost = (e, post) => {
+    alert('deleting')
   }
 
   componentWillMount() {
@@ -25,7 +34,6 @@ class PostList extends React.Component {
       this.setState({postsList: response.data.posts})
       this.props.setBlogPostList(response.data.posts)
     })
-    setTimeout(() => this.setState({opacity: 1}))
   }
 
   render() {
@@ -33,27 +41,26 @@ class PostList extends React.Component {
       return <h2>Whoops looks like this list is empty.</h2>
     }
     return (
-      <Grid
-        fluid
-        style={{
-          opacity: this.state.opacity,
-          transition: 'opacity 500ms linear',
-        }}>
-        {this.state.postsList.map(post => (
-          <Col key={post.pk} md={4}>
-            <PostCard
-              {...post.fields}
-              onClick={e => this.goToPostView(e, post)}
-            />
-          </Col>
-        ))}
-      </Grid>
+      <Fade>
+        <Grid fluid>
+          {this.state.postsList.map(post => (
+            <Col key={post.pk} md={4}>
+              <PostCard
+                {...post.fields}
+                onClick={e => this.goToPostView(e, post)}
+                deletePost={e => this.deletePost(e, post)}
+                editPost={e => this.editPost(e, post)}
+              />
+            </Col>
+          ))}
+        </Grid>
+      </Fade>
     )
   }
 }
 
 let PostCard = props => (
-  <div className={props.className}>
+  <Slide className={props.className}>
     <div className="title" onClick={props.onClick}>
       {props.title}
     </div>
@@ -62,17 +69,17 @@ let PostCard = props => (
     </div>
     <Grid fluid className="controls">
       <Col md={6}>
-        <Button block>
+        <Button block onClick={props.editPost}>
           edit <Glyphicon glyph="pencil" />
         </Button>
       </Col>
       <Col md={6}>
-        <Button block>
+        <Button block onClick={props.deletePost}>
           delete <Glyphicon glyph="trash" />
         </Button>
       </Col>
     </Grid>
-  </div>
+  </Slide>
 )
 
 PostCard = styled(PostCard)`
