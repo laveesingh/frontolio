@@ -1,0 +1,2 @@
+export const SET_BLOG_POST_LIST = 'SET_BLOG_POST_LIST'
+export const SET_BLOG_POST = 'SET_BLOG_POST'

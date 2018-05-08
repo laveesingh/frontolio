@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
 import {Grid, Row, Col} from 'react-bootstrap'
+import * as actions from '../actions/index'
 
 class PostList extends React.Component {
   state = {
@@ -13,7 +15,10 @@ class PostList extends React.Component {
     axios({
       url: 'http://localhost:8000/blog/post/list/',
       method: 'get',
-    }).then(response => this.setState({postsList: response.data.posts}))
+    }).then(response => {
+      this.setState({postsList: response.data.posts})
+      this.props.setBlogPostList(response.data.posts)
+    })
   }
 
   componentWillUpdate() {
@@ -59,12 +64,17 @@ PostCard = styled(PostCard)`
     cursor: pointer;
     opacity: 0.9;
     &:hover {
-      opacity: 1.0;
+      opacity: 1;
       box-shadow: 10px 10px 20px grey;
     }
   }
   .title {
-    background-image: linear-gradient(312deg, #14134e 0%, #512d5a 68%, #843b61 100%);
+    background-image: linear-gradient(
+      312deg,
+      #14134e 0%,
+      #512d5a 68%,
+      #843b61 100%
+    );
     padding: 10px;
     box-shadow: 0px 0px 2px grey;
     font-size: 24px;
@@ -81,4 +91,14 @@ PostCard = styled(PostCard)`
   }
 `
 
-export default PostList
+const mapStateToProps = state => ({
+  blogPost: state.blog.blogPost,
+  blogPostList: state.blog.blogPostList,
+})
+
+const mapDispatchToProps = dispatch => ({
+  setBlogPost: post => dispatch(actions.setBlogPost(post)),
+  setBlogPostList: postList => dispatch(actions.setBlogPostList(postList)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)
