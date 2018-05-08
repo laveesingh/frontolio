@@ -8,10 +8,6 @@ import Slide from './Slide'
 import * as actions from '../actions/index'
 
 class PostList extends React.Component {
-  state = {
-    postsList: [],
-  }
-
   goToPostView = (e, post) => {
     e.preventDefault()
     this.props.setBlogPost(post)
@@ -31,19 +27,19 @@ class PostList extends React.Component {
       url: 'http://localhost:8000/blog/post/list/',
       method: 'get',
     }).then(response => {
-      this.setState({postsList: response.data.posts})
       this.props.setBlogPostList(response.data.posts)
     })
   }
 
   render() {
-    if (this.state.postsList.length === 0) {
+    const blogPostList = this.props.blogPostList
+    if (!blogPostList || blogPostList.length === 0) {
       return <h2>Whoops looks like this list is empty.</h2>
     }
     return (
       <Fade>
         <Grid fluid>
-          {this.state.postsList.map(post => (
+          {blogPostList.map(post => (
             <Col key={post.pk} md={4}>
               <PostCard
                 {...post.fields}
