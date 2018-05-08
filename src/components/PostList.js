@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {Grid, Col} from 'react-bootstrap'
+import {Grid, Col, Button, Glyphicon} from 'react-bootstrap'
 import * as actions from '../actions/index'
 
 class PostList extends React.Component {
@@ -53,9 +53,25 @@ class PostList extends React.Component {
 }
 
 let PostCard = props => (
-  <div className={props.className} onClick={props.onClick}>
-    <div className="title">{props.title}</div>
-    <div className="description">{props.description}</div>
+  <div className={props.className}>
+    <div className="title" onClick={props.onClick}>
+      {props.title}
+    </div>
+    <div className="description" onClick={props.onClick}>
+      {props.description}
+    </div>
+    <Grid fluid className="controls">
+      <Col md={6}>
+        <Button block>
+          edit <Glyphicon glyph="pencil" />
+        </Button>
+      </Col>
+      <Col md={6}>
+        <Button block>
+          delete <Glyphicon glyph="trash" />
+        </Button>
+      </Col>
+    </Grid>
   </div>
 )
 
@@ -94,6 +110,25 @@ PostCard = styled(PostCard)`
     padding: 10px;
     box-shadow: 0px 0px 1px grey;
     background-color: #f8f8f8;
+  }
+  .controls {
+    padding: 0px;
+    div {
+      padding: 0px;
+    }
+    button {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      background-image: linear-gradient(
+        312deg,
+        #14134e 0%,
+        #512d5a 68%,
+        #843b61 100%
+      );
+      border-radius: 0px;
+      box-shadow: 0px -1px 2px grey;
+    }
   }
 `
 

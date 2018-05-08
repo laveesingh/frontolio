@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Link} from 'react-router-dom'
-import {Grid, Row, Col, Nav, NavItem, Button} from 'react-bootstrap'
+import {Grid, Row, Col, Nav, NavItem} from 'react-bootstrap'
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import PostList from './PostList'
@@ -22,9 +22,6 @@ class Blog extends React.Component {
   }
 
   handleSelect = key => this.setState({activeTabKey: key})
-
-
-
 
   render() {
     return (
