@@ -13,8 +13,7 @@ class PostView extends React.Component {
         url: `http://localhost:8000/blog/post/${postId}/`,
         method: 'get',
       }).then(response => {
-        console.log(response.data.post[0])
-        this.props.setBlogPost(response.data.post[0])
+        this.props.setBlogPost(response.data.data)
       })
     }
   }
