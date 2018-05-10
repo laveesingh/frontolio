@@ -21,7 +21,12 @@ class PostList extends React.Component {
   deletePost = (e, post) => {
     axios({
       url: `http://localhost:8000/blog/post/delete/${post.pk}`,
-    }).then(response => console.log(response))
+    }).then(response => {
+      const data = response.data
+      if (data.status === 0) {
+        this.props.removeBlogPostFromList(post)
+      }
+    })
   }
 
   componentWillMount() {
@@ -145,6 +150,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setBlogPost: post => dispatch(actions.setBlogPost(post)),
   setBlogPostList: postList => dispatch(actions.setBlogPostList(postList)),
+  removeBlogPostFromList: post =>
+    dispatch(actions.removeBlogPostFromList(post)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

@@ -1,11 +1,16 @@
-import {SET_BLOG_POST, SET_BLOG_POST_LIST} from './types'
+import * as actionTypes from './types'
 
 export const setBlogPost = post => ({
-  type: SET_BLOG_POST,
+  type: actionTypes.SET_BLOG_POST,
   payload: post,
 })
 
 export const setBlogPostList = postList => ({
-  type: SET_BLOG_POST_LIST,
+  type: actionTypes.SET_BLOG_POST_LIST,
   payload: postList,
+})
+
+export const removeBlogPostFromList = post => ({
+  type: actionTypes.REMOVE_BLOG_POST_FROM_LIST,
+  payload: post,
 })
