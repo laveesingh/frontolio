@@ -25,7 +25,7 @@ export const deleteBlogPostById = (postId, callback) => {
 export const createBlogPost = (data, callback) => {
   const csrfmiddlewaretoken = cookies.get('csrftoken')
   axios({
-    url: urls.createBlogPost,
+    url: urls.createBlogPost(),
     method: 'post',
     headers: {'X-CSRFToken': csrfmiddlewaretoken},
     data: data,
