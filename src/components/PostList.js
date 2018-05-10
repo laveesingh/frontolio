@@ -19,7 +19,9 @@ class PostList extends React.Component {
   }
 
   deletePost = (e, post) => {
-    alert('deleting')
+    axios({
+      url: `http://localhost:8000/blog/post/delete/${post.pk}`,
+    }).then(response => console.log(response))
   }
 
   componentWillMount() {
