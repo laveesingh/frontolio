@@ -31,16 +31,16 @@ class CreatePost extends React.Component {
     this.setState({submitting: true})
     const creationCallback = response => {
       let newState = {submitting: false}
-      if (response.data.message === 'successful') {
+      if (response.data.status === 0) {
         newState = {
           ...newState,
           title: '',
           description: '',
-          submitting: '',
+          content: '',
+          submitting: false,
         }
       }
       this.setState(newState)
-      console.log('response from server:', response)
     }
     createBlogPost(formData, creationCallback)
   }
@@ -60,7 +60,7 @@ class CreatePost extends React.Component {
         }}>
         <Col mdOffset={2} md={8}>
           <form className="create-post" onSubmit={this.handleSubmit}>
-            <FormGroup controlId={1}>
+            <FormGroup>
               <ControlLabel>Title</ControlLabel>
               <NewFormControl
                 type="text"
@@ -69,7 +69,7 @@ class CreatePost extends React.Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <FormGroup controlId={2}>
+            <FormGroup>
               <ControlLabel>Description</ControlLabel>
               <NewFormControl
                 type="text"
@@ -78,7 +78,7 @@ class CreatePost extends React.Component {
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <FormGroup controlId={3}>
+            <FormGroup>
               <ControlLabel>Content</ControlLabel>
               <NewFormControl
                 componentClass="textarea"
