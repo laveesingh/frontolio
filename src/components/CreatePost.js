@@ -1,6 +1,4 @@
 import React from 'react'
-import axios from 'axios'
-import cookies from 'js-cookie'
 import styled from 'styled-components'
 import {
   Grid,

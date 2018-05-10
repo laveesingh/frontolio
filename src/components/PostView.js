@@ -1,20 +1,16 @@
 import React from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
 import * as actions from '../actions/index'
 import styled from 'styled-components'
 import renderHTML from 'react-render-html'
+import {getBlogPostById} from '../api/consumers'
 
 class PostView extends React.Component {
   componentWillMount() {
     if (!this.props.blogPost) {
       const postId = this.props.match.params.id
-      axios({
-        url: `http://localhost:8000/blog/post/${postId}/`,
-        method: 'get',
-      }).then(response => {
-        this.props.setBlogPost(response.data.data)
-      })
+      const callback = response => this.props.setBlogPost(response.data.data)
+      getBlogPostById(postId, callback)
     }
   }
   render() {

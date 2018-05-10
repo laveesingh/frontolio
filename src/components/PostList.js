@@ -1,11 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {Grid, Col, Button, Glyphicon} from 'react-bootstrap'
 import Fade from './Fade'
 import Slide from './Slide'
 import * as actions from '../actions/index'
+import {getBlogPostList, deleteBlogPostById} from '../api/consumers'
 
 class PostList extends React.Component {
   goToPostView = (e, post) => {
@@ -19,30 +19,27 @@ class PostList extends React.Component {
   }
 
   deletePost = (e, post) => {
-    axios({
-      url: `http://localhost:8000/blog/post/delete/${post.pk}`,
-    }).then(response => {
+    const callback = response => {
       const data = response.data
       if (data.status === 0) {
         this.props.removeBlogPostFromList(post)
       } else {
         alert(data.message)
       }
-    })
+    }
+    deleteBlogPostById(post.pk, callback)
   }
 
   componentWillMount() {
-    axios({
-      url: 'http://localhost:8000/blog/post/list/',
-      method: 'get',
-    }).then(response => {
+    const callback = response => {
       const data = response.data
       if (data.status === 0) {
         this.props.setBlogPostList(data.data)
       } else {
         alert(data.message)
       }
-    })
+    }
+    getBlogPostList(callback)
   }
 
   render() {
