@@ -19,7 +19,7 @@ export const getBlogPostById = (postId, callback) => {
 export const deleteBlogPostById = (postId, callback) => {
   axios({
     url: urls.deleteBlogPostById(postId),
-  }).then(repsonse => callback(response))
+  }).then(response => callback(response))
 }
 
 export const createBlogPost = (data, callback) => {
