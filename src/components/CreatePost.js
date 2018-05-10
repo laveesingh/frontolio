@@ -9,17 +9,14 @@ import {
   Button,
 } from 'react-bootstrap'
 import {createBlogPost} from '../api/consumers'
+import Fade from './Fade'
 
 class CreatePost extends React.Component {
   state = {
-    opacity: 0,
     title: '',
     description: '',
     content: '',
     submitting: false,
-  }
-  componentDidMount() {
-    setTimeout(() => this.setState({opacity: 1}))
   }
   handleSubmit = e => {
     e.preventDefault()
@@ -51,54 +48,50 @@ class CreatePost extends React.Component {
   }
   render() {
     return (
-      <Grid
-        fluid
-        className={this.props.className}
-        style={{
-          opacity: this.state.opacity,
-          transition: 'opacity 500ms ease-in-out',
-        }}>
-        <Col mdOffset={2} md={8}>
-          <form className="create-post" onSubmit={this.handleSubmit}>
-            <FormGroup>
-              <ControlLabel>Title</ControlLabel>
-              <NewFormControl
-                type="text"
-                value={this.state.title}
-                id="title"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Description</ControlLabel>
-              <NewFormControl
-                type="text"
-                value={this.state.description}
-                id="description"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Content</ControlLabel>
-              <NewFormControl
-                componentClass="textarea"
-                rows={5}
-                value={this.state.content}
-                id="content"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <Button
-              type="submit"
-              onClick={this.handleSubmit}
-              block
-              bsStyle={'primary'}
-              disabled={this.state.submitting}>
-              Create
-            </Button>
-          </form>
-        </Col>
-      </Grid>
+      <Fade>
+        <Grid fluid className={this.props.className}>
+          <Col mdOffset={2} md={8}>
+            <form className="create-post" onSubmit={this.handleSubmit}>
+              <FormGroup>
+                <ControlLabel>Title</ControlLabel>
+                <NewFormControl
+                  type="text"
+                  value={this.state.title}
+                  id="title"
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <ControlLabel>Description</ControlLabel>
+                <NewFormControl
+                  type="text"
+                  value={this.state.description}
+                  id="description"
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <ControlLabel>Content</ControlLabel>
+                <NewFormControl
+                  componentClass="textarea"
+                  rows={5}
+                  value={this.state.content}
+                  id="content"
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <Button
+                type="submit"
+                onClick={this.handleSubmit}
+                block
+                bsStyle={'primary'}
+                disabled={this.state.submitting}>
+                Create
+              </Button>
+            </form>
+          </Col>
+        </Grid>
+      </Fade>
     )
   }
 }
