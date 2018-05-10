@@ -34,7 +34,7 @@ class PostList extends React.Component {
       url: 'http://localhost:8000/blog/post/list/',
       method: 'get',
     }).then(response => {
-      this.props.setBlogPostList(response.data.posts)
+      this.props.setBlogPostList(response.data.data)
     })
   }
 
