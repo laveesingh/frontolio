@@ -25,6 +25,8 @@ class PostList extends React.Component {
       const data = response.data
       if (data.status === 0) {
         this.props.removeBlogPostFromList(post)
+      } else {
+        alert(data.message)
       }
     })
   }
@@ -34,7 +36,12 @@ class PostList extends React.Component {
       url: 'http://localhost:8000/blog/post/list/',
       method: 'get',
     }).then(response => {
-      this.props.setBlogPostList(response.data.data)
+      const data = response.data
+      if (data.status === 0) {
+        this.props.setBlogPostList(data.data)
+      } else {
+        alert(data.message)
+      }
     })
   }
 
